@@ -14,12 +14,16 @@ struct IncorrectView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 300)
-                .foregroundStyle(.green)
+                .foregroundStyle(.red)
+            #if os(visionOS)
+                .offset(z: 200)
+            #endif
             
             Text("Oops! That's not correct!")
                 .font(.extraLargeTitle2)
                 .foregroundStyle(.red)
         }
+        .padding()
     }
 }
 
