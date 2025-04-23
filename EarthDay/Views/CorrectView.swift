@@ -20,7 +20,12 @@ struct CorrectView: View {
             } placeholder: {
                 ProgressView()
             }
-
+            .rotationAnimationAroundYAxis(
+                initialAngle: .zero,
+                deltaAngle: .degrees(1),
+                maximumAngle: 360,
+                every: 0.01
+            )
         #else
             Image(systemName: "globe")
                 .resizable()
