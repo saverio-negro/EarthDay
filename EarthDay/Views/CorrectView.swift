@@ -9,6 +9,9 @@ import SwiftUI
 import RealityKit
 
 struct CorrectView: View {
+    
+    @State private var rotation: Angle = .zero
+    
     var body: some View {
         VStack(spacing: 50) {
             
@@ -20,6 +23,7 @@ struct CorrectView: View {
             } placeholder: {
                 ProgressView()
             }
+            .rotation3DEffect(rotation, axis: .y)
 
         #else
             Image(systemName: "globe")
@@ -38,6 +42,16 @@ struct CorrectView: View {
                 .foregroundStyle(.green)
         }
         .padding()
+        .onAppear {
+            _ = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
+                
+                rotation.degrees += 1
+                
+                if rotation.degrees >= 360 {
+                    timer.invalidate()
+                }
+            }
+        }
     }
 }
 
